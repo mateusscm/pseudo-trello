@@ -1,6 +1,8 @@
 import React from "react";
 import { Add, Close } from "@material-ui/icons";
 import { AddActionButton, Card, Textarea, Action, ButtonAdd } from "./styles";
+import { connect } from "react-redux";
+import { addList, addCard } from "../../actions";
 
 class TrelloActionButton extends React.Component {
   state = {
@@ -16,6 +18,30 @@ class TrelloActionButton extends React.Component {
     this.setState({
       text: e.target.value
     });
+  };
+
+  handleAddList = () => {
+    const { dispatch } = this.props;
+    const { text } = this.state;
+
+    if (text) {
+      this.setState({ text: "" });
+      dispatch(addList(text));
+    }
+
+    return;
+  };
+
+  handleAddCard = () => {
+    const { dispatch, listID } = this.props;
+    const { text } = this.state;
+
+    if (text) {
+      this.setState({ text: "" });
+      dispatch(addCard(listID, text));
+    }
+
+    return;
   };
 
   renderAddButton = () => {
@@ -55,7 +81,11 @@ class TrelloActionButton extends React.Component {
     return (
       <div>
         <Action>
-          <ButtonAdd>{buttonTitle}</ButtonAdd>
+          <ButtonAdd
+            onMouseDown={list ? this.handleAddList : this.handleAddCard}
+          >
+            {buttonTitle}
+          </ButtonAdd>
           <Close />
         </Action>
         <Card style={{ minHeight: 85, minWidth: 272, padding: "6px 8px 2px" }}>
@@ -76,4 +106,4 @@ class TrelloActionButton extends React.Component {
   }
 }
 
-export default TrelloActionButton;
+export default connect()(TrelloActionButton);

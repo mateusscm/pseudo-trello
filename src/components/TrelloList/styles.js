@@ -25,8 +25,8 @@ export const Card = styled.div`
 
 export const InsideContainer = styled.div`
   height: auto;
-  max-height: calc(100vh - 110px);
-  overflow: auto;
+  /* max-height: calc(100vh - 110px); */
+  /* overflow: auto; */
 `;
 
 export const AddActionButton = styled.div`
