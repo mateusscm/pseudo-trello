@@ -9,17 +9,20 @@ export const ContainerCards = styled.div`
   min-width: 300px;
   padding: 8px;
   margin-right: 8px;
-  height: min-content;
-  overflow: auto;
+  height: 100%;
+  /* height: min-content; */
+  /* overflow: auto;
   max-height: calc(100vh - 55px);
-  position: relative;
+  position: relative; */
 `;
 
 export const HeaderList = styled.div`
-  position: sticky;
-  top: -8px;
   background: #dfe3e6;
-  margin: -2px;
+  margin: 4px;
+  span {
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
 `;
 
 export const Card = styled.div`
@@ -34,9 +37,10 @@ export const Card = styled.div`
 `;
 
 export const InsideContainer = styled.div`
-  /* height: auto; */
-  /* max-height: calc(100vh - 110px); */
-  /* overflow: auto; */
+  height: auto;
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 
 export const AddActionButton = styled.div`
@@ -45,6 +49,7 @@ export const AddActionButton = styled.div`
   cursor: pointer;
   border-radius: 3px;
   min-width: ${props => `${props.buttonWidth}`};
+  margin: ${props => `${props.buttonMargin} 0px`};
   height: 36px;
   opacity: ${props => `${props.buttonTextOpacity}`};
   color: ${props => `${props.buttonTextColor}`};

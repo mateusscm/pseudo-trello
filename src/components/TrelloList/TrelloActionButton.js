@@ -48,6 +48,7 @@ class TrelloActionButton extends React.Component {
     const { list } = this.props;
 
     const buttonText = list ? "Add nova lista" : "Add novo card";
+    const buttonMargin = list ? "0px" : "5px";
     const buttonTextOpacity = list ? 1 : 0.5;
     const buttonTextColor = list ? "white" : "inherit";
     const buttonTextBackground = list ? "rgba(0,0,0,0.15)" : "inherit";
@@ -61,9 +62,11 @@ class TrelloActionButton extends React.Component {
         buttonTextBackground={buttonTextBackground}
         buttonTextHovered={buttonTextHovered}
         buttonWidth={buttonWidth}
+        buttonMargin={buttonMargin}
         onClick={() => this.setState({ formOpen: true })}
       >
         <Add />
+        &nbsp;
         <span>{buttonText}</span>
       </AddActionButton>
     );
@@ -80,15 +83,7 @@ class TrelloActionButton extends React.Component {
 
     return (
       <div>
-        <Action>
-          <ButtonAdd
-            onMouseDown={list ? this.handleAddList : this.handleAddCard}
-          >
-            {buttonTitle}
-          </ButtonAdd>
-          <Close />
-        </Action>
-        <Card style={{ minHeight: 85, minWidth: 272, padding: "6px 8px 2px" }}>
+        <Card style={{ minHeight: 54, minWidth: 272, padding: "6px 8px 2px" }}>
           <Textarea
             placeholder={placeholder}
             autoFocus
@@ -97,6 +92,14 @@ class TrelloActionButton extends React.Component {
             onChange={this.handleInputChange}
           />
         </Card>
+        <Action>
+          <ButtonAdd
+            onMouseDown={list ? this.handleAddList : this.handleAddCard}
+          >
+            {buttonTitle}
+          </ButtonAdd>
+          <Close />
+        </Action>
       </div>
     );
   };
