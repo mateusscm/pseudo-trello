@@ -1,5 +1,5 @@
 import React from "react";
-import { ContainerCards, InsideContainer } from "./styles";
+import { ContainerCards, InsideContainer, HeaderList } from "./styles";
 import TrelloCard from "./TrelloCard";
 import TrelloActionButton from "./TrelloActionButton";
 import { Droppable } from "react-beautiful-dnd";
@@ -9,8 +9,10 @@ export default function TrelloList({ title, cards, listID }) {
     <Droppable droppableId={String(listID)}>
       {provided => (
         <ContainerCards {...provided.droppableProps} ref={provided.innerRef}>
-          <span>{title}</span>
-          <TrelloActionButton listID={listID} />
+          <HeaderList>
+            <span>{title}</span>
+            <TrelloActionButton listID={listID} />
+          </HeaderList>
           <InsideContainer>
             {cards.map((card, index) => (
               <TrelloCard

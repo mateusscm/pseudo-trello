@@ -10,6 +10,16 @@ export const ContainerCards = styled.div`
   padding: 8px;
   margin-right: 8px;
   height: min-content;
+  overflow: auto;
+  max-height: calc(100vh - 55px);
+  position: relative;
+`;
+
+export const HeaderList = styled.div`
+  position: sticky;
+  top: -8px;
+  background: #dfe3e6;
+  margin: -2px;
 `;
 
 export const Card = styled.div`
@@ -24,7 +34,7 @@ export const Card = styled.div`
 `;
 
 export const InsideContainer = styled.div`
-  height: auto;
+  /* height: auto; */
   /* max-height: calc(100vh - 110px); */
   /* overflow: auto; */
 `;
