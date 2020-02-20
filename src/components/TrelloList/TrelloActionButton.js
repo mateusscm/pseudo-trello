@@ -3,6 +3,7 @@ import { Add, Close } from "@material-ui/icons";
 import { AddActionButton, Card, Textarea, Action, ButtonAdd } from "./styles";
 import { connect } from "react-redux";
 import { addList, addCard } from "../../actions";
+import { Fade } from "@material-ui/core";
 
 class TrelloActionButton extends React.Component {
   state = {
@@ -82,25 +83,29 @@ class TrelloActionButton extends React.Component {
     const buttonTitle = list ? "Add List" : "Add Card";
 
     return (
-      <div>
-        <Card style={{ minHeight: 54, minWidth: 272, padding: "6px 8px 2px" }}>
-          <Textarea
-            placeholder={placeholder}
-            autoFocus
-            onBlur={this.closeForm}
-            value={this.state.text}
-            onChange={this.handleInputChange}
-          />
-        </Card>
-        <Action>
-          <ButtonAdd
-            onMouseDown={list ? this.handleAddList : this.handleAddCard}
+      <Fade in={this.state.formOpen} timeout={800}>
+        <div>
+          <Card
+            style={{ minHeight: 54, minWidth: 272, padding: "6px 8px 2px" }}
           >
-            {buttonTitle}
-          </ButtonAdd>
-          <Close />
-        </Action>
-      </div>
+            <Textarea
+              placeholder={placeholder}
+              autoFocus
+              onBlur={this.closeForm}
+              value={this.state.text}
+              onChange={this.handleInputChange}
+            />
+          </Card>
+          <Action>
+            <ButtonAdd
+              onMouseDown={list ? this.handleAddList : this.handleAddCard}
+            >
+              {buttonTitle}
+            </ButtonAdd>
+            <Close />
+          </Action>
+        </div>
+      </Fade>
     );
   };
 
